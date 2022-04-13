@@ -5,11 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './authentication-panel.component.html',
   styleUrls: ['./authentication-panel.component.scss']
 })
-export class AuthenticationPanelComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class AuthenticationPanelComponent { }

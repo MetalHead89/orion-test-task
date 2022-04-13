@@ -1,0 +1,14 @@
+@import "/src/styles/vars.scss";
+
+.main {
+  &__content {
+    max-width: $content-width;
+    margin: 0 auto;
+
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

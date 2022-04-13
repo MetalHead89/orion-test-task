@@ -1,5 +1,12 @@
+@import "/src/styles/vars.scss";
+
 .header {
-  display: flex;
-  justify-content: flex-end;
   padding: 10px;
+
+  &__content {
+    display: flex;
+    justify-content: flex-end;
+    max-width: $content-width;
+    margin: 0 auto;
+  }
 }
