@@ -17,7 +17,7 @@ export class LogInComponent implements OnInit {
 
   constructor(router: Router) {
     this.form = new FormGroup({
-      name: new FormControl('', [Validators.required]),
+      login: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
     this.isAuthenticationFailed = false;
@@ -26,7 +26,7 @@ export class LogInComponent implements OnInit {
 
   submit() {
     if (
-      databaseFunctions.login(this.form.value.name, this.form.value.password)
+      databaseFunctions.login(this.form.value.login, this.form.value.password)
     ) {
       this.router.navigate(['/']);
     } else {
