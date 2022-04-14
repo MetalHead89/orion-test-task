@@ -1,14 +1,11 @@
 @import "/src/styles/vars.scss";
 
 .main {
+  flex-grow: 1;
+
   &__content {
     max-width: $content-width;
+    height: 100%;
     margin: 0 auto;
-
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
   }
 }
