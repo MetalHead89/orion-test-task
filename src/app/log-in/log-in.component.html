@@ -14,6 +14,11 @@
       placeholder="Пароль"
       required
     />
-    <button type="submit" class="log-in__submit">Войти</button>
+    <span [hidden]="!isAuthenticationFailed" class="log-in__authentication-error">
+      Неверные логин или пароль
+    </span>
+    <button [disabled]="form.invalid" type="submit" class="log-in__submit">
+      Войти
+    </button>
   </form>
 </div>

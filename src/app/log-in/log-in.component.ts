@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import databaseFunctions from 'src/database/database-functions';
 
 @Component({
   selector: 'app-log-in',
@@ -9,21 +11,28 @@ import { FormControl, FormGroup } from '@angular/forms';
   encapsulation: ViewEncapsulation.None,
 })
 export class LogInComponent implements OnInit {
-
   form: FormGroup;
+  isAuthenticationFailed: boolean;
+  router: Router;
 
-  constructor() {
+  constructor(router: Router) {
     this.form = new FormGroup({
-      name: new FormControl(''),
-      password: new FormControl('')
-    })
+      name: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    });
+    this.isAuthenticationFailed = false;
+    this.router = router;
   }
 
   submit() {
-    console.log(this.form);
+    if (
+      databaseFunctions.login(this.form.value.name, this.form.value.password)
+    ) {
+      this.router.navigate(['/']);
+    } else {
+      this.isAuthenticationFailed = true;
+    }
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
