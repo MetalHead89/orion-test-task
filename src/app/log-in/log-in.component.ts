@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-log-in',
@@ -9,7 +10,18 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class LogInComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+
+  constructor() {
+    this.form = new FormGroup({
+      name: new FormControl(''),
+      password: new FormControl('')
+    })
+  }
+
+  submit() {
+    console.log(this.form);
+  }
 
   ngOnInit(): void {
   }

@@ -1,7 +1,19 @@
 <div class="log-in__card">
-  <form action="" class="log-in__form">
-    <input type="text" class="log-in__input" placeholder="Имя">
-    <input type="password" class="log-in__input" placeholder="Пароль">
+  <form class="log-in__form" [formGroup]="form" (ngSubmit)="submit()">
+    <input
+      type="text"
+      class="log-in__input"
+      formControlName="name"
+      placeholder="Имя"
+      required
+    />
+    <input
+      type="password"
+      class="log-in__input"
+      formControlName="password"
+      placeholder="Пароль"
+      required
+    />
     <button type="submit" class="log-in__submit">Войти</button>
   </form>
 </div>
