@@ -2,9 +2,15 @@ import bd from './bd';
 
 const databaseFunctions = {
   login: (login: string, password: string) => {
-    return bd.users.some(
-      (user) => user.login === login && user.password === password
-    );
+    let userData = null;
+
+    bd.users.forEach((user) => {
+      if (user.login === login && user.password === password) {
+        userData = user;
+      }
+    });
+
+    return userData;
   },
 };
 
