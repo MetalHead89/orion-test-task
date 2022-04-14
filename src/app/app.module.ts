@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { AuthenticationPanelComponent } from './header/authentication-panel/authentication-panel.component';
 import { MainComponent } from './main/main.component';
 import { HomeComponent } from './home/home.component';
+import { NotAuthenticatedComponent } from './not-authenticated/not-authenticated.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HomeComponent } from './home/home.component';
     HeaderComponent,
     AuthenticationPanelComponent,
     MainComponent,
-    HomeComponent
+    HomeComponent,
+    NotAuthenticatedComponent
   ],
   imports: [
     BrowserModule,
