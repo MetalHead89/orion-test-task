@@ -1,15 +1,21 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AuthenticationState } from './authentication.reducer';
 
-export const selectAuthenticationFeature =
+export const authenticationFeature =
   createFeatureSelector<AuthenticationState>('authentication');
 
-export const selectRole = createSelector(
-  selectAuthenticationFeature,
+export const roleSelector = createSelector(
+  authenticationFeature,
   (state: AuthenticationState) => state.role
 );
 
-export const selectLogin = createSelector(
-  selectAuthenticationFeature,
+export const loginSelector = createSelector(
+  authenticationFeature,
   (state: AuthenticationState) => state.login
+);
+
+export const fullNameSelector = createSelector(
+  authenticationFeature,
+  (state: AuthenticationState) =>
+    state.name && state.surname ? `${state.name} ${state.surname}` : null
 );

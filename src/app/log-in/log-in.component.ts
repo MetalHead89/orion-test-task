@@ -28,15 +28,25 @@ export class LogInComponent implements OnInit {
   }
 
   submit() {
-    const userData: UserData = databaseFunctions.login(this.form.value.login, this.form.value.password);
+    const userData: UserData = databaseFunctions.login(
+      this.form.value.login,
+      this.form.value.password
+    );
 
     if (userData !== null) {
-      this.store.dispatch(authentication({ role: userData.role, login: userData.login }));
+      this.store.dispatch(
+        authentication({
+          role: userData.role,
+          login: userData.login,
+          name: userData.name,
+          surname: userData.surname,
+        })
+      );
       this.router.navigate(['/']);
     } else {
       this.isAuthenticationFailed = true;
     }
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }

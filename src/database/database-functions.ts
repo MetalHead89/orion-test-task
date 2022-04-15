@@ -3,8 +3,10 @@ import bd from './bd';
 type Role = 'admin' | 'user';
 
 type UserData = {
-  role: Role,
+  role: Role;
   login: string;
+  name: string;
+  surname: string;
 } | null;
 
 const databaseFunctions = {
@@ -13,7 +15,12 @@ const databaseFunctions = {
 
     bd.users.forEach((user) => {
       if (user.login === login && user.password === password) {
-        userData = { role: user.role, login: user.login };
+        userData = {
+          role: user.role,
+          login: user.login,
+          name: user.name,
+          surname: user.surname,
+        };
       }
     });
 
