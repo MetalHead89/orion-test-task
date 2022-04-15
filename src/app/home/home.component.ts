@@ -1,25 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { AuthenticationState, Role } from '../reducers/authentication/authentication.reducer';
+import { Store } from '@ngrx/store';
+import {
+  AuthenticationState,
+  Role,
+} from '../reducers/authentication/authentication.reducer';
 import { selectRole } from '../reducers/authentication/authentication.selectors';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public role$: Observable<Role> = this.store$.pipe(select(selectRole))
+  role: Role = null;
 
-  constructor(private router: Router, private store$: Store<AuthenticationState>) {
-    console.log(this.role$)
-    if (this.role$ !== null) {
+  constructor(
+    private router: Router,
+    private store$: Store<AuthenticationState>
+  ) {
+    this.store$
+      .select(selectRole)
+      .subscribe((selectRole) => (this.role = selectRole));
+
+    console.log(this.role);
+
+    if (!this.role) {
       this.router.navigate(['/not-authenticated']);
     }
   }
 
-  ngOnInit(): void { }
-
+  ngOnInit(): void {}
 }
