@@ -1,4 +1,8 @@
-const bd = {
+type BD = {
+  users: { role: 'admin' | 'user', login: string, password: string }[]
+}
+
+const bd: BD = {
   users: [
     { role: 'admin', login: 'admin', password: 'пароль123' },
     { role: 'user', login: 'user', password: 'пароль456' },
@@ -6,3 +10,4 @@ const bd = {
 };
 
 export default bd;
+export type { BD };

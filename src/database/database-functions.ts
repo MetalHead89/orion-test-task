@@ -1,12 +1,19 @@
 import bd from './bd';
 
+type Role = 'admin' | 'user';
+
+type UserData = {
+  role: Role,
+  login: string;
+} | null;
+
 const databaseFunctions = {
-  login: (login: string, password: string) => {
-    let userData = null;
+  login: (login: string, password: string): UserData => {
+    let userData: UserData = null;
 
     bd.users.forEach((user) => {
       if (user.login === login && user.password === password) {
-        userData = user;
+        userData = { role: user.role, login: user.login };
       }
     });
 
@@ -15,3 +22,4 @@ const databaseFunctions = {
 };
 
 export default databaseFunctions;
+export type { UserData };
