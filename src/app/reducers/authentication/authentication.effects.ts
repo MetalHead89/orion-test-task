@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
-import databaseFunctions from 'src/database/database-functions';
+import databaseServices from 'src/database/database-service';
 import {
   authentication,
   authenticationFailed,
@@ -17,7 +17,7 @@ export class AuthenticationEffects {
       this.actions$.pipe(
         ofType(authentication),
         map((action) => {
-          const userData = databaseFunctions.login(
+          const userData = databaseServices.login(
             action.login,
             action.password
           );

@@ -1,7 +1,7 @@
 import bd from './bd';
 
 type Role = 'admin' | 'user';
-type DatabaseFunctions = {
+type databaseServices = {
   login: (login: string, password: string) => UserData;
 };
 
@@ -12,7 +12,7 @@ type UserData = {
   surname: string;
 } | null;
 
-const databaseFunctions = {
+const databaseServices = {
   login: (login: string, password: string): UserData => {
     let userData: UserData = null;
 
@@ -31,5 +31,5 @@ const databaseFunctions = {
   },
 };
 
-export default databaseFunctions;
-export type { UserData, DatabaseFunctions };
+export default databaseServices;
+export type { UserData, databaseServices };
