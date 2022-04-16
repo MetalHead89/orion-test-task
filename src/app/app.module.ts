@@ -12,6 +12,8 @@ import { NotAuthenticatedComponent } from './not-authenticated/not-authenticated
 import { LogInComponent } from './log-in/log-in.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthenticationEffects } from './reducers/authentication/authentication.effects';
 
 @NgModule({
   declarations: [
@@ -21,18 +23,19 @@ import { reducers, metaReducers } from './reducers';
     MainComponent,
     HomeComponent,
     NotAuthenticatedComponent,
-    LogInComponent
+    LogInComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([AuthenticationEffects]),
     StoreModule.forRoot(reducers, {
-      metaReducers
-    })
+      metaReducers,
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

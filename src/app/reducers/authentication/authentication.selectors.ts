@@ -19,3 +19,8 @@ export const fullNameSelector = createSelector(
   (state: AuthenticationState) =>
     state.name && state.surname ? `${state.name} ${state.surname}` : null
 );
+
+export const authenticationFailedSelector = createSelector(
+  authenticationFeature,
+  (state: AuthenticationState) => state.isAuthenticationFailed
+);

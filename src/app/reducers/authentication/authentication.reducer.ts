@@ -8,6 +8,7 @@ type AuthenticationState = {
   login: null | string;
   name: null | string;
   surname: null | string;
+  isAuthenticationFailed: boolean;
 };
 
 const initialState: AuthenticationState = {
@@ -15,12 +16,13 @@ const initialState: AuthenticationState = {
   login: null,
   name: null,
   surname: null,
+  isAuthenticationFailed: false,
 };
 
 export const AuthenticationReducer = createReducer(
   initialState,
   on(
-    AuthenticationActions.authentication,
+    AuthenticationActions.saveUserData,
     (state, { role, login, name, surname }) => ({
       ...state,
       role,
@@ -28,7 +30,11 @@ export const AuthenticationReducer = createReducer(
       name,
       surname,
     })
-  )
+  ),
+  on(AuthenticationActions.authenticationFailed, (state) => ({
+    ...state,
+    isAuthenticationFailed: true,
+  }))
 );
 
 export { AuthenticationState, Role };

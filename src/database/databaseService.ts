@@ -1,10 +1,11 @@
+import { Injectable } from '@angular/core';
 import bd from './bd';
 
-type Role = 'admin' | 'user';
-type DatabaseFunctions = {
+interface IDatabaseService {
   login: (login: string, password: string) => UserData;
-};
+}
 
+type Role = 'admin' | 'user';
 type UserData = {
   role: Role;
   login: string;
@@ -12,8 +13,13 @@ type UserData = {
   surname: string;
 } | null;
 
-const databaseFunctions = {
-  login: (login: string, password: string): UserData => {
+@Injectable({
+  providedIn: 'root',
+})
+export class DatabaseService implements IDatabaseService {
+  constructor() {}
+
+  login(login: string, password: string): UserData {
     let userData: UserData = null;
 
     bd.users.forEach((user) => {
@@ -28,8 +34,11 @@ const databaseFunctions = {
     });
 
     return userData;
-  },
-};
+  }
 
-export default databaseFunctions;
-export type { UserData, DatabaseFunctions };
+  show() {
+    return 1
+  }
+}
+
+export { IDatabaseService };

@@ -2,9 +2,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import databaseFunctions, { UserData } from 'src/database/database-functions';
 import { authentication } from '../reducers/authentication/authentication.actions';
-import { AuthenticationState } from '../reducers/authentication/authentication.reducer';
+import {
+  AuthenticationState,
+  Role,
+} from '../reducers/authentication/authentication.reducer';
+import {
+  authenticationFailedSelector,
+  roleSelector,
+} from '../reducers/authentication/authentication.selectors';
 
 @Component({
   selector: 'app-log-in',
@@ -13,40 +19,41 @@ import { AuthenticationState } from '../reducers/authentication/authentication.r
   host: { class: 'log-in' },
   encapsulation: ViewEncapsulation.None,
 })
-export class LogInComponent implements OnInit {
+export class LogInComponent {
   form: FormGroup;
-  isAuthenticationFailed: boolean;
-  router: Router;
 
-  constructor(router: Router, private store: Store<AuthenticationState>) {
+  role$ = this.store$.select(roleSelector);
+  role: Role = null;
+
+  isAuthenticationFailed$ = this.store$.select(authenticationFailedSelector);
+  isAuthenticationFailed: boolean = false;
+
+  constructor(
+    private router: Router,
+    private store$: Store<AuthenticationState>
+  ) {
     this.form = new FormGroup({
       login: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
-    this.isAuthenticationFailed = false;
-    this.router = router;
+
+    this.role$.subscribe((roleSelector) => {
+      if (roleSelector) {
+        this.router.navigate(['/']);
+      }
+    });
+
+    this.isAuthenticationFailed$.subscribe((authenticationFailedSelector) => {
+      this.isAuthenticationFailed = authenticationFailedSelector;
+    });
   }
 
   submit() {
-    const userData: UserData = databaseFunctions.login(
-      this.form.value.login,
-      this.form.value.password
+    this.store$.dispatch(
+      authentication({
+        login: this.form.value.login,
+        password: this.form.value.password,
+      })
     );
-
-    if (userData !== null) {
-      this.store.dispatch(
-        authentication({
-          role: userData.role,
-          login: userData.login,
-          name: userData.name,
-          surname: userData.surname,
-        })
-      );
-      this.router.navigate(['/']);
-    } else {
-      this.isAuthenticationFailed = true;
-    }
   }
-
-  ngOnInit(): void {}
 }
