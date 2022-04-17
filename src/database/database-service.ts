@@ -1,6 +1,6 @@
-import userBD from './usersBD';
-import branchBD, { Branch } from './branchBD';
-import headOrganizationBD, { HeadOrganization } from './headOrganizationBD';
+import userBD from './users-bd';
+import branchBD, { Branch } from './branch-bd';
+import headOrganizationBD, { HeadOrganization } from './head-organization-bd';
 
 type Role = 'admin' | 'user';
 type databaseServices = {
