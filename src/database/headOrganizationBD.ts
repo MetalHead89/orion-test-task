@@ -1,4 +1,4 @@
-type HeadOrganizationBD = {
+type HeadOrganization = {
   id: number;
   fullOrganizationName: string;
   shortOrganizationName: string;
@@ -7,9 +7,9 @@ type HeadOrganizationBD = {
   founder: string;
   address: string;
   telephone: string;
-}[];
+};
 
-const headOrganizationBD: HeadOrganizationBD = [
+const headOrganizationBD: HeadOrganization[] = [
   {
     id: 1,
     fullOrganizationName: 'Рога и Копыта',
@@ -23,4 +23,4 @@ const headOrganizationBD: HeadOrganizationBD = [
 ];
 
 export default headOrganizationBD;
-export type { HeadOrganizationBD };
+export type { HeadOrganization };

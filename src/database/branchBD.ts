@@ -1,11 +1,11 @@
-type BranchBD = {
+type Branch = {
   id: number;
   address: string;
   executive: string;
   telephone: string;
-}[];
+};
 
-const branchBD: BranchBD = [
+const branchBD: Branch[] = [
   {
     id: 1,
     address: 'г. Астрахань, ул. Новая, д. 116',
@@ -27,4 +27,4 @@ const branchBD: BranchBD = [
 ];
 
 export default branchBD;
-export type { BranchBD };
+export type { Branch };

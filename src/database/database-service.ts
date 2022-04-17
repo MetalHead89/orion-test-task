@@ -1,8 +1,12 @@
-import bd from './bd';
+import userBD from './usersBD';
+import branchBD, { Branch } from './branchBD';
+import headOrganizationBD, { HeadOrganization } from './headOrganizationBD';
 
 type Role = 'admin' | 'user';
 type databaseServices = {
   login: (login: string, password: string) => UserData;
+  getHeadOrganizations: () => HeadOrganization[];
+  getBranches: () => Branch[];
 };
 
 type UserData = {
@@ -16,7 +20,7 @@ const databaseServices = {
   login: (login: string, password: string): UserData => {
     let userData: UserData = null;
 
-    bd.users.forEach((user) => {
+    userBD.forEach((user) => {
       if (user.login === login && user.password === password) {
         userData = {
           role: user.role,
@@ -28,6 +32,14 @@ const databaseServices = {
     });
 
     return userData;
+  },
+
+  getHeadOrganizations: (): HeadOrganization[] => {
+    return headOrganizationBD;
+  },
+
+  getBranches: (): Branch[] => {
+    return branchBD;
   },
 };
 
