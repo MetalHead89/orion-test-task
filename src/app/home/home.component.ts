@@ -11,6 +11,8 @@ import { roleSelector } from '../reducers/authentication/authentication.selector
 import { branchesSelector } from '../reducers/branch/branch.selectors';
 import { load } from '../reducers/head-organization/head-organization.action';
 import { headOrganizationsSelector } from '../reducers/head-organization/head-organization.selectors';
+import { OrganizationDisplayType } from '../reducers/home/home.reducer';
+import { organizationDisplayTypeSelector } from '../reducers/home/home.selectors';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +29,11 @@ export class HomeComponent implements OnInit {
   branches$ = this.store.select(branchesSelector);
   branches: Branch[] = [];
 
+  organizationDisplayType$ = this.store.select(organizationDisplayTypeSelector);
+  organizationDisplayType: OrganizationDisplayType = 'list';
+
+  organizationsList: (HeadOrganization | Branch)[] = [];
+
   constructor(
     private router: Router,
     private store: Store<AuthenticationState>
@@ -40,14 +47,29 @@ export class HomeComponent implements OnInit {
         (this.headOrganizations = headOrganizationsSelector)
     );
 
+    this.organizationDisplayType$.subscribe(
+      (organizationDisplayTypeSelector) =>
+        (this.organizationDisplayType = organizationDisplayTypeSelector)
+    );
+
     this.role$.subscribe((roleSelector) => (this.role = roleSelector));
 
     if (!this.role) {
       this.router.navigate(['/not-authenticated']);
     }
+
+    this.setOrganizationsList();
+    console.log(this.branches)
   }
 
   ngOnInit(): void {
     this.store.dispatch(load());
+  }
+
+  private setOrganizationsList(): void {
+    this.organizationsList = [
+      ...this.headOrganizations,
+      ...this.branches,
+    ].sort();
   }
 }
