@@ -15,6 +15,7 @@ import { reducers, metaReducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthenticationEffects } from './reducers/authentication/authentication.effects';
 import { HeadOrganizationEffects } from './reducers/head-organization/head-organization.effects';
+import { BranchEffects } from './reducers/branch/branch.effects';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,11 @@ import { HeadOrganizationEffects } from './reducers/head-organization/head-organ
     AppRoutingModule,
     ReactiveFormsModule,
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([AuthenticationEffects, HeadOrganizationEffects]),
+    EffectsModule.forRoot([
+      AuthenticationEffects,
+      HeadOrganizationEffects,
+      BranchEffects,
+    ]),
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),

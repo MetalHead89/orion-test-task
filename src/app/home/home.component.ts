@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Branch } from 'src/database/branch-bd';
 import { HeadOrganization } from 'src/database/head-organization-bd';
 import {
   AuthenticationState,
   Role,
 } from '../reducers/authentication/authentication.reducer';
 import { roleSelector } from '../reducers/authentication/authentication.selectors';
+import { branchesSelector } from '../reducers/branch/branch.selectors';
 import { load } from '../reducers/head-organization/head-organization.action';
 import { headOrganizationsSelector } from '../reducers/head-organization/head-organization.selectors';
 
@@ -22,10 +24,17 @@ export class HomeComponent implements OnInit {
   headOrganizations$ = this.store.select(headOrganizationsSelector);
   headOrganizations: HeadOrganization[] = [];
 
+  branches$ = this.store.select(branchesSelector);
+  branches: Branch[] = [];
+
   constructor(
     private router: Router,
     private store: Store<AuthenticationState>
   ) {
+    this.branches$.subscribe(
+      (branchesSelector) => (this.branches = branchesSelector)
+    );
+
     this.headOrganizations$.subscribe(
       (headOrganizationsSelector) =>
         (this.headOrganizations = headOrganizationsSelector)
