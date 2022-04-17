@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { BranchState } from './branch.reducer';
 
 export const BranchesFeature =
-  createFeatureSelector<BranchState>('headOrganizations');
+  createFeatureSelector<BranchState>('branches');
 
 export const branchesSelector = createSelector(
   BranchesFeature,

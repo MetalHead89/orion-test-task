@@ -8,6 +8,7 @@ import {
   Role,
 } from '../reducers/authentication/authentication.reducer';
 import { roleSelector } from '../reducers/authentication/authentication.selectors';
+import { loadBranches } from '../reducers/branch/branch.action';
 import { branchesSelector } from '../reducers/branch/branch.selectors';
 import { load } from '../reducers/head-organization/head-organization.action';
 import { headOrganizationsSelector } from '../reducers/head-organization/head-organization.selectors';
@@ -58,12 +59,12 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/not-authenticated']);
     }
 
-    this.setOrganizationsList();
-    console.log(this.branches)
+    // this.setOrganizationsList();
   }
 
   ngOnInit(): void {
     this.store.dispatch(load());
+    this.store.dispatch(loadBranches());
   }
 
   private setOrganizationsList(): void {
