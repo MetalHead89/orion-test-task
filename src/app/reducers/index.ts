@@ -3,17 +3,25 @@ import {
   ActionReducerMap,
   createFeatureSelector,
   createSelector,
-  MetaReducer
+  MetaReducer,
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
-import { AuthenticationReducer, AuthenticationState } from './authentication/authentication.reducer';
+import {
+  AuthenticationReducer,
+  AuthenticationState,
+} from './authentication/authentication.reducer';
+import HeadOrganizationReducer, { HeadOrganizationState } from './head-organization/head-organization.reducer';
 
 export interface State {
-  authentication: AuthenticationState
+  authentication: AuthenticationState;
+  headOrganizations: HeadOrganizationState;
 }
 
 export const reducers: ActionReducerMap<State> = {
-  authentication: AuthenticationReducer
+  authentication: AuthenticationReducer,
+  headOrganizations: HeadOrganizationReducer,
 };
 
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+export const metaReducers: MetaReducer<State>[] = !environment.production
+  ? []
+  : [];

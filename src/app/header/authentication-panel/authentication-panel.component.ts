@@ -9,10 +9,10 @@ import { fullNameSelector } from 'src/app/reducers/authentication/authentication
   styleUrls: ['./authentication-panel.component.scss'],
 })
 export class AuthenticationPanelComponent {
-  fullName$ = this.store$.select(fullNameSelector);
+  fullName$ = this.store.select(fullNameSelector);
   fullName: string | null = null;
 
-  constructor(private store$: Store<AuthenticationState>) {
+  constructor(private store: Store<AuthenticationState>) {
     this.fullName$.subscribe(
       (fullNameSelector) => (this.fullName = fullNameSelector)
     );

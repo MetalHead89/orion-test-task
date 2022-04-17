@@ -22,15 +22,15 @@ import {
 export class LogInComponent {
   form: FormGroup;
 
-  role$ = this.store$.select(roleSelector);
+  role$ = this.store.select(roleSelector);
   role: Role = null;
 
-  isAuthenticationFailed$ = this.store$.select(authenticationFailedSelector);
+  isAuthenticationFailed$ = this.store.select(authenticationFailedSelector);
   isAuthenticationFailed: boolean = false;
 
   constructor(
     private router: Router,
-    private store$: Store<AuthenticationState>
+    private store: Store<AuthenticationState>
   ) {
     this.form = new FormGroup({
       login: new FormControl('', [Validators.required]),
@@ -49,7 +49,7 @@ export class LogInComponent {
   }
 
   submit() {
-    this.store$.dispatch(
+    this.store.dispatch(
       authentication({
         login: this.form.value.login,
         password: this.form.value.password,
