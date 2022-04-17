@@ -58,19 +58,17 @@ export class HomeComponent implements OnInit {
     if (!this.role) {
       this.router.navigate(['/not-authenticated']);
     }
-
-    // this.setOrganizationsList();
   }
 
   ngOnInit(): void {
     this.store.dispatch(load());
     this.store.dispatch(loadBranches());
+    this.setOrganizationsList();
   }
 
   private setOrganizationsList(): void {
-    this.organizationsList = [
-      ...this.headOrganizations,
-      ...this.branches,
-    ].sort();
+    this.organizationsList = [...this.headOrganizations, ...this.branches].sort(
+      (a, b) => a.address.localeCompare(b.address)
+    );
   }
 }

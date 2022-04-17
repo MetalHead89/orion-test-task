@@ -1,7 +1,3 @@
-<p>home works!</p>
-
-<!-- {{ headOrganizations | json }} -->
-
-{{ branches | json }} <br/><br/>
-
-<!-- {{ organizationsList }} -->
+<ul>
+  <li *ngFor="let org of organizationsList">{{ org.address }}</li>
+</ul>
