@@ -2,6 +2,14 @@
   list-style-type: none;
   padding: 0;
 
+  &__check-item {
+    cursor: pointer;
+  }
+
+  &__item {
+    cursor: pointer;
+  }
+
   &_hidden {
     display: none;
     padding-left: 20px;

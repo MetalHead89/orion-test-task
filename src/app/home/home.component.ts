@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   organizationDisplayType$ = this.store.select(organizationDisplayTypeSelector);
   organizationDisplayType: OrganizationDisplayType = 'list';
 
-  organizationsList: (HeadOrganization | Branch)[] = [];
+  organizationsList: (HeadOrganization | (Branch & { fullOrganizationName: string }))[] = [];
   organizationsTree: (HeadOrganization & { branch: Branch[] })[] = [];
 
   constructor(
@@ -70,34 +70,37 @@ export class HomeComponent implements OnInit {
     event.preventDefault();
   }
 
+  handleHiddenOrganizationListClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+
   ngOnInit(): void {
     this.store.dispatch(load());
     this.store.dispatch(loadBranches());
-    this.setOrganizationsList();
-    this.setOrganizationsTree();
+    this.setOrganizations();
   }
 
-  private setOrganizationsList(): void {
-    this.organizationsList = [...this.headOrganizations, ...this.branches].sort(
-      (a, b) => a.address.localeCompare(b.address)
-    );
-  }
-
-  private setOrganizationsTree(): void {
+  private setOrganizations(): void {
     this.organizationsTree = this.headOrganizations.map(organization => (
       { ...organization, branch: [] })
     )
+    this.organizationsList = [...this.organizationsTree];
 
     this.branches.forEach(branch => {
       this.organizationsTree.forEach(organization => {
         if (organization.id === branch.headOrganization) {
           organization.branch.push(branch)
+          this.organizationsList.push({ ...branch, fullOrganizationName: organization.fullOrganizationName })
         }
       })
     })
 
+    this.organizationsList.sort(
+      (a, b) => (a.fullOrganizationName.localeCompare(b.fullOrganizationName) || a.address.localeCompare(b.address))
+    )
+
     this.organizationsTree.sort(
-      (a, b) => a.address.localeCompare(b.address)
+      (a, b) => a.fullOrganizationName.localeCompare(b.fullOrganizationName)
     )
   }
 }

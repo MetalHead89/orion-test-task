@@ -24,7 +24,7 @@
     class="organizations-list__item"
     *ngFor="let organization of organizationsList"
   >
-    {{ organization.address }}
+    {{ organization.fullOrganizationName }} {{ organization.address }}
   </li>
 </ul>
 
@@ -33,10 +33,17 @@
     class="organizations-list__item"
     *ngFor="let organization of organizationsTree"
   >
-    <label class="organizations-list__check-item">+
-      <span class="organizations-list__item" (click)="handleItemClick($event)">{{ organization.address }}</span>
+    <label class="organizations-list__check-item"
+      >+
+      <span class="organizations-list__item" (click)="handleItemClick($event)"
+        >{{ organization.fullOrganizationName }}
+        {{ organization.address }}</span
+      >
       <input class="organizations-list__checkbox" type="checkbox" />
-      <ul class="organizations-list organizations-list_hidden">
+      <ul
+        class="organizations-list organizations-list_hidden"
+        (click)="handleHiddenOrganizationListClick($event)"
+      >
         <li
           class="organizations-list__item"
           *ngFor="let branch of organization.branch"
