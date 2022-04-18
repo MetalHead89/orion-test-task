@@ -1,0 +1,13 @@
+@import "/src/styles/vars.scss";
+
+.authentication-panel {
+  &__entry {
+    text-decoration: none;
+    color: $main-text-color;
+    font-weight: 700;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

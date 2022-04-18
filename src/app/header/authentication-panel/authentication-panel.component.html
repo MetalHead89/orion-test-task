@@ -1,4 +1,4 @@
-<a *ngIf="!fullName else nameBlock" routerLink="/log-in">Войти</a>
+<a *ngIf="!fullName else nameBlock" routerLink="/log-in" class="authentication-panel__entry">Войти</a>
 
 <ng-template #nameBlock>
   <span>{{fullName}}</span>
