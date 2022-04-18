@@ -12,8 +12,9 @@ import { loadBranches } from '../reducers/branch/branch.action';
 import { branchesSelector } from '../reducers/branch/branch.selectors';
 import { load } from '../reducers/head-organization/head-organization.action';
 import { headOrganizationsSelector } from '../reducers/head-organization/head-organization.selectors';
+import { showOrganizationCard } from '../reducers/home/home.action';
 import { OrganizationDisplayType } from '../reducers/home/home.reducer';
-import { organizationDisplayTypeSelector } from '../reducers/home/home.selectors';
+import { isOrganizationCardSelector, organizationDisplayTypeSelector } from '../reducers/home/home.selectors';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +33,9 @@ export class HomeComponent implements OnInit {
 
   organizationDisplayType$ = this.store.select(organizationDisplayTypeSelector);
   organizationDisplayType: OrganizationDisplayType = 'list';
+
+  isOrganizationCard$ = this.store.select(isOrganizationCardSelector);
+  isOrganizationCard: boolean = false;
 
   organizationsList: (HeadOrganization | (Branch & { fullOrganizationName: string }))[] = [];
   organizationsTree: (HeadOrganization & { branch: Branch[] })[] = [];
@@ -54,6 +58,11 @@ export class HomeComponent implements OnInit {
         (this.organizationDisplayType = organizationDisplayTypeSelector)
     );
 
+    this.isOrganizationCard$.subscribe(
+      (isOrganizationCardSelector) =>
+        (this.isOrganizationCard = isOrganizationCardSelector)
+    );
+
     this.role$.subscribe((roleSelector) => (this.role = roleSelector));
 
     if (!this.role) {
@@ -66,7 +75,7 @@ export class HomeComponent implements OnInit {
   }
 
   handleItemClick(event: MouseEvent) {
-    // alert('ddd')
+    this.store.dispatch(showOrganizationCard())
     event.preventDefault();
   }
 

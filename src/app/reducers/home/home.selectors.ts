@@ -7,3 +7,8 @@ export const organizationDisplayTypeSelector = createSelector(
   homeFeature,
   (state: HomeState) => state.organizationDisplayType
 );
+
+export const isOrganizationCardSelector = createSelector(
+  homeFeature,
+  (state: HomeState) => state.isOrganizationCard
+);

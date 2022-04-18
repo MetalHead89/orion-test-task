@@ -1,3 +1,5 @@
+<app-organization-card *ngIf="isOrganizationCard"></app-organization-card>
+
 <span>Режим отображения:</span>
 <label>
   <input
@@ -23,6 +25,7 @@
   <li
     class="organizations-list__item"
     *ngFor="let organization of organizationsList"
+    (click)="handleItemClick($event)"
   >
     {{ organization.fullOrganizationName }} {{ organization.address }}
   </li>
@@ -47,6 +50,7 @@
         <li
           class="organizations-list__item"
           *ngFor="let branch of organization.branch"
+          (click)="handleItemClick($event)"
         >
           {{ branch.address }}
         </li>

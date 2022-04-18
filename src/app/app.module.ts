@@ -16,6 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthenticationEffects } from './reducers/authentication/authentication.effects';
 import { HeadOrganizationEffects } from './reducers/head-organization/head-organization.effects';
 import { BranchEffects } from './reducers/branch/branch.effects';
+import { OrganizationCardComponent } from './organization-card/organization-card.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { BranchEffects } from './reducers/branch/branch.effects';
     HomeComponent,
     NotAuthenticatedComponent,
     LogInComponent,
+    OrganizationCardComponent,
   ],
   imports: [
     BrowserModule,
