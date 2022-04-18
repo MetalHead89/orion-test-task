@@ -65,6 +65,11 @@ export class HomeComponent implements OnInit {
     this.organizationDisplayType = displayType;
   }
 
+  handleItemClick(event: MouseEvent) {
+    // alert('ddd')
+    event.preventDefault();
+  }
+
   ngOnInit(): void {
     this.store.dispatch(load());
     this.store.dispatch(loadBranches());

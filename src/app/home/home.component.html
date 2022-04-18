@@ -19,17 +19,31 @@
   Дерево
 </label>
 
-<ul *ngIf="organizationDisplayType === 'list'">
-  <li *ngFor="let organization of organizationsList">
+<ul class="organizations-list" *ngIf="organizationDisplayType === 'list'">
+  <li
+    class="organizations-list__item"
+    *ngFor="let organization of organizationsList"
+  >
     {{ organization.address }}
   </li>
 </ul>
 
-<ul *ngIf="organizationDisplayType === 'tree'">
-  <li *ngFor="let organization of organizationsTree">
-    {{ organization.address }}
-    <ul>
-      <li *ngFor="let branch of organization.branch">{{ branch.address }}</li>
-    </ul>
+<ul class="organizations-list" *ngIf="organizationDisplayType === 'tree'">
+  <li
+    class="organizations-list__item"
+    *ngFor="let organization of organizationsTree"
+  >
+    <label class="organizations-list__check-item">+
+      <span class="organizations-list__item" (click)="handleItemClick($event)">{{ organization.address }}</span>
+      <input class="organizations-list__checkbox" type="checkbox" />
+      <ul class="organizations-list organizations-list_hidden">
+        <li
+          class="organizations-list__item"
+          *ngFor="let branch of organization.branch"
+        >
+          {{ branch.address }}
+        </li>
+      </ul>
+    </label>
   </li>
 </ul>

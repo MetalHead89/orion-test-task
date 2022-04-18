@@ -1,0 +1,17 @@
+.organizations-list {
+  list-style-type: none;
+  padding: 0;
+
+  &_hidden {
+    display: none;
+    padding-left: 20px;
+  }
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__checkbox:checked ~ &_hidden {
+    display: block;
+  }
+}
