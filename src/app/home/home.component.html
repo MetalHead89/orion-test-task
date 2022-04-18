@@ -1,3 +1,35 @@
-<ul>
-  <li *ngFor="let org of organizationsList">{{ org.address }}</li>
+<span>Режим отображения:</span>
+<label>
+  <input
+    type="radio"
+    name="displayType"
+    value="list"
+    [checked]="organizationDisplayType === 'list'"
+    (change)="handleDisplayTypeRadioChange('list')"
+  />
+  Список
+</label>
+<label>
+  <input
+    type="radio"
+    name="displayType"
+    value="tree"
+    (change)="handleDisplayTypeRadioChange('tree')"
+  />
+  Дерево
+</label>
+
+<ul *ngIf="organizationDisplayType === 'list'">
+  <li *ngFor="let organization of organizationsList">
+    {{ organization.address }}
+  </li>
+</ul>
+
+<ul *ngIf="organizationDisplayType === 'tree'">
+  <li *ngFor="let organization of organizationsTree">
+    {{ organization.address }}
+    <ul>
+      <li *ngFor="let branch of organization.branch">{{ branch.address }}</li>
+    </ul>
+  </li>
 </ul>

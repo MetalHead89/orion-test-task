@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
   organizationDisplayType: OrganizationDisplayType = 'list';
 
   organizationsList: (HeadOrganization | Branch)[] = [];
+  organizationsTree: (HeadOrganization & { branch: Branch[] })[] = [];
 
   constructor(
     private router: Router,
@@ -60,15 +61,38 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  handleDisplayTypeRadioChange(displayType: OrganizationDisplayType) {
+    this.organizationDisplayType = displayType;
+  }
+
   ngOnInit(): void {
     this.store.dispatch(load());
     this.store.dispatch(loadBranches());
     this.setOrganizationsList();
+    this.setOrganizationsTree();
   }
 
   private setOrganizationsList(): void {
     this.organizationsList = [...this.headOrganizations, ...this.branches].sort(
       (a, b) => a.address.localeCompare(b.address)
     );
+  }
+
+  private setOrganizationsTree(): void {
+    this.organizationsTree = this.headOrganizations.map(organization => (
+      { ...organization, branch: [] })
+    )
+
+    this.branches.forEach(branch => {
+      this.organizationsTree.forEach(organization => {
+        if (organization.id === branch.headOrganization) {
+          organization.branch.push(branch)
+        }
+      })
+    })
+
+    this.organizationsTree.sort(
+      (a, b) => a.address.localeCompare(b.address)
+    )
   }
 }

@@ -16,14 +16,14 @@ const branchBD: Branch[] = [
   },
   {
     id: 2,
-    headOrganization: 2,
+    headOrganization: 1,
     address: 'г. Чебоксары, ул. Шоссейная, д. 87',
     telephone: '89754975432 ',
     executive: 'Михеева Оксана федоровна',
   },
   {
     id: 3,
-    headOrganization: 3,
+    headOrganization: 1,
     address: 'г. Новосибирск, ул. Николая Буды, д. 73',
     telephone: '87779246897',
     executive: 'Конев Максим Адреевич',
