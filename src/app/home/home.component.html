@@ -21,6 +21,8 @@
   Дерево
 </label>
 
+<button *ngIf="role === 'admin'">Добавить организацию</button>
+
 <ul class="organizations-list" *ngIf="organizationDisplayType === 'list'">
   <li
     class="organizations-list__item"
