@@ -1,7 +1,13 @@
 <div class="organization-card">
   <div class="organization-card__card">
     <button class="organization-card__close" (click)="handleCloseClick()">
-      close
+      x
+    </button>
+
+    <div class="organization-card__text">Здесь должна быть информация об организации, но я не успел её сделать:(</div>
+
+    <button *ngIf="role === 'admin'" class="organization-card__edit">
+      Редактировать
     </button>
   </div>
 </div>

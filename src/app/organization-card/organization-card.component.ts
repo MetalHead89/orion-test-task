@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Role } from '../reducers/authentication/authentication.reducer';
+import { roleSelector } from '../reducers/authentication/authentication.selectors';
 import { closeOrganizationCard } from '../reducers/home/home.action';
 import { HomeState } from '../reducers/home/home.reducer';
 
@@ -10,7 +12,14 @@ import { HomeState } from '../reducers/home/home.reducer';
 })
 export class OrganizationCardComponent implements OnInit {
 
-  constructor(private store: Store<HomeState>) { }
+  role$ = this.store.select(roleSelector);
+  role: Role = null;
+
+  constructor(private store: Store<HomeState>) {
+    this.role$.subscribe((roleSelector) => {
+      this.role = roleSelector;
+    });
+  }
 
   handleCloseClick() {
     this.store.dispatch(closeOrganizationCard())

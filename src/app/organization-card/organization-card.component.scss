@@ -1,3 +1,5 @@
+@import "/src/styles/vars.scss";
+
 .organization-card {
   position: fixed;
   left: 0;
@@ -7,18 +9,56 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #00000073;
+  background: #050404a8;
 
   &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 450px;
     position: relative;
-    width: 500px;
-    height: 500px;
+    padding: 40px;
     background: white;
+  }
+
+  &__text {
+    text-align: center;
   }
 
   &__close {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    background: none;
+    border: none;
+    padding: 0;
+
+    &:hover {
+      color: $main-color-light;
+    }
+  }
+
+  &__edit {
+    max-width: 200px;
+    width: 100%;
+    padding: 10px;
+    background: $main-color;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      background: $main-color-light;
+      color: white;
+    }
+
+    &:active {
+      background: $main-color;
+    }
   }
 }
