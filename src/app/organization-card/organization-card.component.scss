@@ -35,6 +35,7 @@
     background: none;
     border: none;
     padding: 0;
+    cursor: pointer;
 
     &:hover {
       color: $main-color-light;
@@ -60,5 +61,14 @@
     &:active {
       background: $main-color;
     }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__info-item {
+    padding: 5px 0;
   }
 }

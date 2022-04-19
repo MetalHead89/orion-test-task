@@ -12,3 +12,8 @@ export const isOrganizationCardSelector = createSelector(
   homeFeature,
   (state: HomeState) => state.isOrganizationCard
 );
+
+export const activeOrganizationDataSelector = createSelector(
+  homeFeature,
+  (state: HomeState) => state.activeOrganization
+);

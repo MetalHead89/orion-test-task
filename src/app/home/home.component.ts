@@ -12,8 +12,8 @@ import { loadBranches } from '../reducers/branch/branch.action';
 import { branchesSelector } from '../reducers/branch/branch.selectors';
 import { load } from '../reducers/head-organization/head-organization.action';
 import { headOrganizationsSelector } from '../reducers/head-organization/head-organization.selectors';
-import { showOrganizationCard } from '../reducers/home/home.action';
-import { OrganizationDisplayType } from '../reducers/home/home.reducer';
+import { setActiveOrganization, showOrganizationCard } from '../reducers/home/home.action';
+import { OrganizationData, OrganizationDisplayType } from '../reducers/home/home.reducer';
 import { isOrganizationCardSelector, organizationDisplayTypeSelector } from '../reducers/home/home.selectors';
 
 @Component({
@@ -76,7 +76,8 @@ export class HomeComponent implements OnInit {
     this.organizationDisplayType = displayType;
   }
 
-  handleItemClick(event: MouseEvent) {
+  handleItemClick(event: MouseEvent, organizationData: OrganizationData) {
+    this.store.dispatch(setActiveOrganization({ organizationData }))
     this.store.dispatch(showOrganizationCard())
     event.preventDefault();
   }

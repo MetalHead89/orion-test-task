@@ -4,7 +4,45 @@
       x
     </button>
 
-    <div class="organization-card__text">Здесь должна быть информация об организации, но я не успел её сделать:(</div>
+    <div class="organization-card__info" *ngIf="headOrganization">
+      <h2>Головная организация</h2>
+      <span class="organization-card__info-item"
+        >Полное название: {{ headOrganization.fullOrganizationName }}</span
+      >
+      <span class="organization-card__info-item"
+        >Сокращенное название:
+        {{ headOrganization.shortOrganizationName }}</span
+      >
+      <span class="organization-card__info-item"
+        >ИНН: {{ headOrganization.tin }}</span
+      >
+      <span class="organization-card__info-item"
+        >КПП: {{ headOrganization.kpp }}</span
+      >
+      kpp
+      <span class="organization-card__info-item"
+        >Учредитель: {{ headOrganization.founder }}</span
+      >
+      <span class="organization-card__info-item"
+        >Адрес: {{ headOrganization.address }}</span
+      >
+      <span class="organization-card__info-item"
+        >Телефон: {{ headOrganization.telephone }}</span
+      >
+    </div>
+
+    <div class="organization-card__info" *ngIf="branch">
+      <h2>Филиал</h2>
+      <span class="organization-card__info-item"
+        >Адрес: {{ branch.address }}</span
+      >
+      <span class="organization-card__info-item"
+        >Телефон: {{ branch.telephone }}</span
+      >
+      <span class="organization-card__info-item"
+        >Должностное лицо: {{ branch.executive }}</span
+      >
+    </div>
 
     <button *ngIf="role === 'admin'" class="organization-card__edit">
       Редактировать

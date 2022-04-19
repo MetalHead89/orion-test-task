@@ -27,7 +27,7 @@
   <li
     class="organizations-list__item organizations-list__item_hovered"
     *ngFor="let organization of organizationsList"
-    (click)="handleItemClick($event)"
+    (click)="handleItemClick($event, organization)"
   >
     {{ organization.fullOrganizationName }} {{ organization.address }}
   </li>
@@ -42,7 +42,7 @@
       >+
       <span
         class="organizations-list__item organizations-list__item_hovered"
-        (click)="handleItemClick($event)"
+        (click)="handleItemClick($event, organization)"
         >{{ organization.fullOrganizationName }}
         {{ organization.address }}</span
       >
@@ -54,7 +54,7 @@
         <li
           class="organizations-list__item organizations-list__item_hovered"
           *ngFor="let branch of organization.branch"
-          (click)="handleItemClick($event)"
+          (click)="handleItemClick($event, branch)"
         >
           {{ branch.address }}
         </li>

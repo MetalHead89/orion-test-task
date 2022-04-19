@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { OrganizationDisplayType } from './home.reducer';
+import { OrganizationData, OrganizationDisplayType } from './home.reducer';
 
 export const switchDisplayType = createAction(
   '[Home] Switch display type organization',
@@ -12,4 +12,9 @@ export const showOrganizationCard = createAction(
 
 export const closeOrganizationCard = createAction(
   '[Home] Close organization card'
+);
+
+export const setActiveOrganization = createAction(
+  '[Home] Set active organization',
+  props<{ organizationData: OrganizationData }>()
 );
