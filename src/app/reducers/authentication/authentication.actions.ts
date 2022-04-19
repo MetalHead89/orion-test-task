@@ -6,6 +6,10 @@ export const authentication = createAction(
   props<{ login: string; password: string }>()
 );
 
+export const signOut = createAction(
+  '[Authentication] sign out'
+);
+
 export const authenticationFailed = createAction(
   '[Authentication] authenticationFailed',
   props<{ isAuthenticationFailed: boolean }>()

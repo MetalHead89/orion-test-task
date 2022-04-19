@@ -31,6 +31,14 @@ export const AuthenticationReducer = createReducer(
       surname,
     })
   ),
+  on(AuthenticationActions.signOut, (state) => (state =
+  {
+    role: null,
+    login: null,
+    name: null,
+    surname: null,
+    isAuthenticationFailed: false,
+  })),
   on(AuthenticationActions.authenticationFailed, (state) => ({
     ...state,
     isAuthenticationFailed: true,

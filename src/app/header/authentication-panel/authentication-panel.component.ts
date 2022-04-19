@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { signOut } from 'src/app/reducers/authentication/authentication.actions';
 import { AuthenticationState } from 'src/app/reducers/authentication/authentication.reducer';
 import { fullNameSelector } from 'src/app/reducers/authentication/authentication.selectors';
 
@@ -16,5 +17,9 @@ export class AuthenticationPanelComponent {
     this.fullName$.subscribe(
       (fullNameSelector) => (this.fullName = fullNameSelector)
     );
+  }
+
+  handleUserNameClick() {
+    this.store.dispatch(signOut());
   }
 }

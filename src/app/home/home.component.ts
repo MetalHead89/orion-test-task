@@ -63,11 +63,13 @@ export class HomeComponent implements OnInit {
         (this.isOrganizationCard = isOrganizationCardSelector)
     );
 
-    this.role$.subscribe((roleSelector) => (this.role = roleSelector));
+    this.role$.subscribe((roleSelector) => {
+      this.role = roleSelector;
 
-    if (!this.role) {
-      this.router.navigate(['/not-authenticated']);
-    }
+      if (!this.role) {
+        this.router.navigate(['/not-authenticated']);
+      }
+    });
   }
 
   handleDisplayTypeRadioChange(displayType: OrganizationDisplayType) {

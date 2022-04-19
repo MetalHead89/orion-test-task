@@ -1,5 +1,17 @@
-<a *ngIf="!fullName else nameBlock" routerLink="/log-in" class="authentication-panel__entry">Войти</a>
+<a
+  *ngIf="!fullName; else nameBlock"
+  routerLink="/log-in"
+  class="authentication-panel__entry"
+  >Войти</a
+>
 
 <ng-template #nameBlock>
-  <span>{{fullName}}</span>
- </ng-template>
+  <span
+    >Вы вошли как
+    <span
+      class="authentication-panel__user-name"
+      (click)="handleUserNameClick()"
+      >{{ fullName }}</span
+    ></span
+  >
+</ng-template>

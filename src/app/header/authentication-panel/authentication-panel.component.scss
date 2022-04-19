@@ -10,4 +10,13 @@
       text-decoration: underline;
     }
   }
+
+  &__user-name {
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+      color: $main-color-light;
+    }
+  }
 }
