@@ -63,6 +63,10 @@
   </li>
 </ul>
 
-<button *ngIf="role === 'admin'" class="home__add-organization">
+<button
+  *ngIf="role === 'admin'"
+  class="home__add-organization"
+  (click)="(handleAddOrganizationClick())"
+>
   Добавить организацию
 </button>

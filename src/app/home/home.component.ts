@@ -85,6 +85,10 @@ export class HomeComponent implements OnInit {
     event.preventDefault();
   }
 
+  handleAddOrganizationClick() {
+    this.router.navigate(['/add-organization']);
+  }
+
   ngOnInit(): void {
     this.store.dispatch(load());
     this.store.dispatch(loadBranches());
