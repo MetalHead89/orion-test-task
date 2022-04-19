@@ -26,6 +26,7 @@ export class OrganizationCardEffects {
       this.actions$.pipe(
         ofType(saveBranch),
         map((action) => {
+          // console.dir(action.payload)
           this.store.dispatch(changeBranch({ payload: action.payload }));
           this.store.dispatch(disableEditMode());
         })

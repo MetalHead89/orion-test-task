@@ -50,7 +50,7 @@ const branchBD: Branch[] = [
     executive: 'Масленников Евгений Константинович',
   },
   {
-    id: 5,
+    id: 7,
     headOrganization: 4,
     address: 'г. Красноярск, ул. Первомайская, д. 47',
     telephone: '89432154899',

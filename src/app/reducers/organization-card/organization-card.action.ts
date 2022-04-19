@@ -16,6 +16,6 @@ export const saveHeadOrganization = createAction(
 );
 
 export const saveBranch = createAction(
-  '[Organization card] Save head organization',
+  '[Organization card] Save branch organization',
   props<{ payload: Branch }>()
 );
