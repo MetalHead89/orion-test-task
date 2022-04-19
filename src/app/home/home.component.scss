@@ -1,3 +1,36 @@
+@import "/src/styles/vars.scss";
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &__add-organization {
+    max-width: 300px;
+    width: 100%;
+    padding: 10px;
+    background: $main-color;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      background: $main-color-light;
+      color: white;
+    }
+
+    &:active {
+      background: $main-color;
+    }
+  }
+
+  &__radio-group {
+    white-space: nowrap;
+  }
+}
+
 .organizations-list {
   list-style-type: none;
   padding: 0;
@@ -7,7 +40,14 @@
   }
 
   &__item {
+    padding: 5px 0;
     cursor: pointer;
+
+    &_hovered {
+      &:hover {
+        color: $main-color-light;
+      }
+    }
   }
 
   &_hidden {

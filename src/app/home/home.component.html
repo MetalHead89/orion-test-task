@@ -1,31 +1,31 @@
 <app-organization-card *ngIf="isOrganizationCard"></app-organization-card>
 
-<span>Режим отображения:</span>
-<label>
-  <input
-    type="radio"
-    name="displayType"
-    value="list"
-    [checked]="organizationDisplayType === 'list'"
-    (change)="handleDisplayTypeRadioChange('list')"
-  />
-  Список
-</label>
-<label>
-  <input
-    type="radio"
-    name="displayType"
-    value="tree"
-    (change)="handleDisplayTypeRadioChange('tree')"
-  />
-  Дерево
-</label>
-
-<button *ngIf="role === 'admin'">Добавить организацию</button>
+<span>Режим отображения: </span>
+<span class="home__radio-group">
+  <label>
+    <input
+      type="radio"
+      name="displayType"
+      value="list"
+      [checked]="organizationDisplayType === 'list'"
+      (change)="handleDisplayTypeRadioChange('list')"
+    />
+    Список
+  </label>
+  <label>
+    <input
+      type="radio"
+      name="displayType"
+      value="tree"
+      (change)="handleDisplayTypeRadioChange('tree')"
+    />
+    Дерево
+  </label>
+</span>
 
 <ul class="organizations-list" *ngIf="organizationDisplayType === 'list'">
   <li
-    class="organizations-list__item"
+    class="organizations-list__item organizations-list__item_hovered"
     *ngFor="let organization of organizationsList"
     (click)="handleItemClick($event)"
   >
@@ -40,7 +40,9 @@
   >
     <label class="organizations-list__check-item"
       >+
-      <span class="organizations-list__item" (click)="handleItemClick($event)"
+      <span
+        class="organizations-list__item organizations-list__item_hovered"
+        (click)="handleItemClick($event)"
         >{{ organization.fullOrganizationName }}
         {{ organization.address }}</span
       >
@@ -50,7 +52,7 @@
         (click)="handleHiddenOrganizationListClick($event)"
       >
         <li
-          class="organizations-list__item"
+          class="organizations-list__item organizations-list__item_hovered"
           *ngFor="let branch of organization.branch"
           (click)="handleItemClick($event)"
         >
@@ -60,3 +62,7 @@
     </label>
   </li>
 </ul>
+
+<button *ngIf="role === 'admin'" class="home__add-organization">
+  Добавить организацию
+</button>
