@@ -7,3 +7,8 @@ export const save = createAction(
   '[Head Organization] save',
   props<{ organizations: HeadOrganization[] }>()
 );
+
+export const changeHead = createAction(
+  '[Head Organization] changeHead',
+  props<{ payload: HeadOrganization }>()
+);

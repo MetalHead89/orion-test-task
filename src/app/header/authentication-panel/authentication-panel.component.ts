@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { signOut } from 'src/app/reducers/authentication/authentication.actions';
 import { AuthenticationState } from 'src/app/reducers/authentication/authentication.reducer';
 import { fullNameSelector } from 'src/app/reducers/authentication/authentication.selectors';
+import { disableEditMode } from 'src/app/reducers/organization-card/organization-card.action';
 
 @Component({
   selector: 'app-authentication-panel',
@@ -21,5 +22,6 @@ export class AuthenticationPanelComponent {
 
   handleUserNameClick() {
     this.store.dispatch(signOut());
+    this.store.dispatch(disableEditMode());
   }
 }

@@ -4,7 +4,10 @@
       x
     </button>
 
-    <div class="organization-card__info" *ngIf="headOrganization">
+    <div
+      class="organization-card__info"
+      *ngIf="headOrganization && !isEditingEnabled"
+    >
       <h2>Головная организация</h2>
       <span class="organization-card__info-item"
         >Полное название: {{ headOrganization.fullOrganizationName }}</span
@@ -30,7 +33,7 @@
       >
     </div>
 
-    <div class="organization-card__info" *ngIf="branch">
+    <div class="organization-card__info" *ngIf="branch && !isEditingEnabled">
       <h2>Филиал</h2>
       <span class="organization-card__info-item"
         >Адрес: {{ branch.address }}</span
@@ -43,8 +46,67 @@
       >
     </div>
 
-    <button *ngIf="role === 'admin'" class="organization-card__edit">
+    <button
+      *ngIf="role === 'admin' && !isEditingEnabled"
+      class="organization-card__edit"
+      (click)="handleEditClick()"
+    >
       Редактировать
     </button>
+
+    <form
+      *ngIf="branchForm !== null && branch !== null && isEditingEnabled"
+      [formGroup]="branchForm"
+      (ngSubmit)="submitBranchForm()"
+      class="organization-card__form"
+    >
+      <input type="text" placeholder="Адрес" formControlName="address" class="organization-card__input" />
+      <input type="tel" placeholder="Телефон" formControlName="telephone" class="organization-card__input" />
+      <input
+        type="text"
+        placeholder="Должностное лицо"
+        formControlName="executive"
+        class="organization-card__input"
+      />
+      <button
+        [disabled]="branchForm.invalid"
+        type="submit"
+        class="organization-card__submit"
+      >
+        Сохранить
+      </button>
+    </form>
+
+    <form
+      *ngIf="headForm !== null && headOrganization !== null && isEditingEnabled"
+      [formGroup]="headForm"
+      (ngSubmit)="submitHeadForm()"
+      class="organization-card__form"
+    >
+      <input
+        type="text"
+        placeholder="Полное название"
+        formControlName="fullOrganizationName"
+        class="organization-card__input"
+      />
+      <input
+        type="text"
+        placeholder="Краткое название"
+        formControlName="shortOrganizationName"
+        class="organization-card__input"
+      />
+      <input type="text" placeholder="ИНН" formControlName="tin" class="organization-card__input" />
+      <input type="text" placeholder="КПП" formControlName="kpp" class="organization-card__input" />
+      <input type="text" placeholder="Учредитель" formControlName="founder" class="organization-card__input" />
+      <input type="text" placeholder="Адрес" formControlName="address" class="organization-card__input" />
+      <input type="text" placeholder="Телефон" formControlName="telephone" class="organization-card__input" />
+      <button
+        [disabled]="headForm.invalid"
+        type="submit"
+        class="organization-card__submit"
+      >
+        Сохранить
+      </button>
+    </form>
   </div>
 </div>

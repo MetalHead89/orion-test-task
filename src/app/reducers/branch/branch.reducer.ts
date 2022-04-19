@@ -11,6 +11,11 @@ const BranchReducer = createReducer(
   on(
     BranchActions.saveBranches,
     (state, { organizations }) => (state = organizations)
+  ),
+  on(
+    BranchActions.changeBranch,
+    (state, { payload }) => [...state.map(branch => branch.id === payload.id ? payload : branch)]
+
   )
 );
 

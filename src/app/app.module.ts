@@ -18,6 +18,7 @@ import { HeadOrganizationEffects } from './reducers/head-organization/head-organ
 import { BranchEffects } from './reducers/branch/branch.effects';
 import { OrganizationCardComponent } from './organization-card/organization-card.component';
 import { AddOrganizationComponent } from './add-organization/add-organization.component';
+import { OrganizationCardEffects } from './reducers/organization-card/organization-card.effects';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AddOrganizationComponent } from './add-organization/add-organization.co
       AuthenticationEffects,
       HeadOrganizationEffects,
       BranchEffects,
+      OrganizationCardEffects
     ]),
     StoreModule.forRoot(reducers, {
       metaReducers,
@@ -48,4 +50,4 @@ import { AddOrganizationComponent } from './add-organization/add-organization.co
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

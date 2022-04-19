@@ -45,12 +45,17 @@ export class HomeComponent implements OnInit {
     private store: Store<AuthenticationState>
   ) {
     this.branches$.subscribe(
-      (branchesSelector) => (this.branches = branchesSelector)
+      (branchesSelector) => {
+        this.branches = branchesSelector
+        this.setOrganizations();
+      }
     );
 
     this.headOrganizations$.subscribe(
-      (headOrganizationsSelector) =>
-        (this.headOrganizations = headOrganizationsSelector)
+      (headOrganizationsSelector) => {
+        this.headOrganizations = headOrganizationsSelector
+        this.setOrganizations();
+      }
     );
 
     this.organizationDisplayType$.subscribe(

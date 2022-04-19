@@ -11,6 +11,10 @@ const HeadOrganizationReducer = createReducer(
   on(
     HeadOrganizationActions.save,
     (state, { organizations }) => (state = organizations)
+  ),
+  on(
+    HeadOrganizationActions.changeHead,
+    (state, { payload }) => [...state.map(head => head.id === payload.id ? payload : head)]
   )
 );
 
