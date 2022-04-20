@@ -13,3 +13,8 @@ export const changeBranch = createAction(
   '[Branch] changeBranch',
   props<{ payload: Branch }>()
 );
+
+export const addBranch = createAction(
+  '[Branch] Add Branch',
+  props<{ payload: Branch }>()
+);

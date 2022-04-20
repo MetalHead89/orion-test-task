@@ -1,4 +1,140 @@
 <div class="add-organization__content">
-  Здесь должна была быть форма для добавления организаций, но я не успел её
-  сделать:(
+  <div class="add-organization__back-section">
+    <button
+      class="add-organization__back"
+      type="button"
+      (click)="handleBackClick()"
+    >
+      < Назад
+    </button>
+  </div>
+  <span>Тип организации: </span>
+  <span class="add-organization__radio-group">
+    <label>
+      <input
+        type="radio"
+        name="organizationType"
+        value="head"
+        [checked]="organizationType === 'head'"
+        (change)="handleOrganizationTypeChange('head')"
+      />
+      Головная организация
+    </label>
+    <label>
+      <input
+        type="radio"
+        name="organizationType"
+        value="branch"
+        [checked]="organizationType === 'branch'"
+        (change)="handleOrganizationTypeChange('branch')"
+      />
+      Филиал
+    </label>
+  </span>
+
+  <form
+    *ngIf="headForm !== null"
+    [formGroup]="headForm"
+    (ngSubmit)="submitHeadForm()"
+    class="add-organization__form"
+  >
+    <input
+      type="text"
+      placeholder="Полное название"
+      formControlName="fullOrganizationName"
+      class="add-organization__input"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Краткое название"
+      formControlName="shortOrganizationName"
+      class="add-organization__input"
+      required
+    />
+    <input
+      type="text"
+      placeholder="ИНН"
+      formControlName="tin"
+      class="add-organization__input"
+      required
+    />
+    <input
+      type="text"
+      placeholder="КПП"
+      formControlName="kpp"
+      class="add-organization__input"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Учредитель"
+      formControlName="founder"
+      class="add-organization__input"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Адрес"
+      formControlName="address"
+      class="add-organization__input"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Телефон"
+      formControlName="telephone"
+      class="add-organization__input"
+      required
+    />
+    <button
+      [disabled]="headForm.invalid"
+      type="submit"
+      class="add-organization__submit"
+    >
+      Добавить
+    </button>
+  </form>
+
+  <form
+    *ngIf="branchForm !== null"
+    class="add-organization__form"
+    [formGroup]="branchForm"
+    (ngSubmit)="submitBranchForm()"
+  >
+    <select class="add-organization__select" formControlName="headOrganization">
+      <option disabled value=0>Головная организация</option>
+      <option *ngFor="let head of headOrganizations" value="{{ head.id }}">
+        {{ head.shortOrganizationName }}
+      </option>
+    </select>
+    <input
+      type="text"
+      placeholder="Адрес"
+      formControlName="address"
+      class="add-organization__input"
+      required
+    />
+    <input
+      type="tel"
+      placeholder="Телефон"
+      formControlName="telephone"
+      class="add-organization__input"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Должностное лицо"
+      formControlName="executive"
+      class="add-organization__input"
+      required
+    />
+    <button
+      [disabled]="branchForm.invalid"
+      type="submit"
+      class="add-organization__submit"
+    >
+      Добавить
+    </button>
+  </form>
 </div>

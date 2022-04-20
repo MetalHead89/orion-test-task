@@ -12,3 +12,8 @@ export const changeHead = createAction(
   '[Head Organization] changeHead',
   props<{ payload: HeadOrganization }>()
 );
+
+export const addHead = createAction(
+  '[Head Organization] Add Head',
+  props<{ payload: HeadOrganization }>()
+);

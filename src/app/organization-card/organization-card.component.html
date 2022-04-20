@@ -60,13 +60,26 @@
       (ngSubmit)="submitBranchForm()"
       class="organization-card__form"
     >
-      <input type="text" placeholder="Адрес" formControlName="address" class="organization-card__input" />
-      <input type="tel" placeholder="Телефон" formControlName="telephone" class="organization-card__input" />
+      <input
+        type="text"
+        placeholder="Адрес"
+        formControlName="address"
+        class="organization-card__input"
+        required
+      />
+      <input
+        type="tel"
+        placeholder="Телефон"
+        formControlName="telephone"
+        class="organization-card__input"
+        required
+      />
       <input
         type="text"
         placeholder="Должностное лицо"
         formControlName="executive"
         class="organization-card__input"
+        required
       />
       <button
         [disabled]="branchForm.invalid"
@@ -88,18 +101,50 @@
         placeholder="Полное название"
         formControlName="fullOrganizationName"
         class="organization-card__input"
+        required
       />
       <input
         type="text"
         placeholder="Краткое название"
         formControlName="shortOrganizationName"
         class="organization-card__input"
+        required
       />
-      <input type="text" placeholder="ИНН" formControlName="tin" class="organization-card__input" />
-      <input type="text" placeholder="КПП" formControlName="kpp" class="organization-card__input" />
-      <input type="text" placeholder="Учредитель" formControlName="founder" class="organization-card__input" />
-      <input type="text" placeholder="Адрес" formControlName="address" class="organization-card__input" />
-      <input type="text" placeholder="Телефон" formControlName="telephone" class="organization-card__input" />
+      <input
+        type="text"
+        placeholder="ИНН"
+        formControlName="tin"
+        class="organization-card__input"
+        required
+      />
+      <input
+        type="text"
+        placeholder="КПП"
+        formControlName="kpp"
+        class="organization-card__input"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Учредитель"
+        formControlName="founder"
+        class="organization-card__input"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Адрес"
+        formControlName="address"
+        class="organization-card__input"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Телефон"
+        formControlName="telephone"
+        class="organization-card__input"
+        required
+      />
       <button
         [disabled]="headForm.invalid"
         type="submit"

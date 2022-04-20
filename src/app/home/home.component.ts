@@ -96,8 +96,12 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(load());
-    this.store.dispatch(loadBranches());
+    if (this.headOrganizations.length === 0) {
+      this.store.dispatch(load());
+    }
+    if (this.branches.length === 0) {
+      this.store.dispatch(loadBranches());
+    }
     this.setOrganizations();
   }
 
@@ -106,7 +110,7 @@ export class HomeComponent implements OnInit {
       { ...organization, branch: [] })
     )
     this.organizationsList = [...this.organizationsTree];
-
+    
     this.branches.forEach(branch => {
       this.organizationsTree.forEach(organization => {
         if (organization.id === branch.headOrganization) {

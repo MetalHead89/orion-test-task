@@ -1,5 +1,6 @@
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { environment } from '../../environments/environment';
+import AddOrganizationReducer, { AddOrganizationState } from './add-organization/add-organization-reducer';
 import {
   AuthenticationReducer,
   AuthenticationState,
@@ -16,7 +17,8 @@ export interface State {
   headOrganizations: HeadOrganizationState;
   branches: BranchState;
   home: HomeState;
-  organizationCard: OrganizationCardState
+  organizationCard: OrganizationCardState;
+  addOrganization: AddOrganizationState;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -24,7 +26,8 @@ export const reducers: ActionReducerMap<State> = {
   headOrganizations: HeadOrganizationReducer,
   branches: BranchReducer,
   home: HomeReducer,
-  organizationCard: OrganizationCardReducer
+  organizationCard: OrganizationCardReducer,
+  addOrganization: AddOrganizationReducer
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
