@@ -64,6 +64,10 @@
     }
   }
 
+  &__authentication-error {
+    color: $error-color;
+  }
+
   &__submit {
     max-width: 120px;
     width: 100%;
