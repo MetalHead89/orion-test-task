@@ -5,7 +5,7 @@ import { Branch } from 'src/database/branch-bd';
 import { HeadOrganization } from 'src/database/head-organization-bd';
 import { Role } from '../reducers/authentication/authentication.reducer';
 import { roleSelector } from '../reducers/authentication/authentication.selectors';
-import { closeOrganizationCard } from '../reducers/home/home.action';
+import { closeOrganizationCard, setActiveOrganization } from '../reducers/home/home.action';
 import { HomeState, OrganizationData } from '../reducers/home/home.reducer';
 import { activeOrganizationDataSelector } from '../reducers/home/home.selectors';
 import { disableEditMode, enableEditMode, saveBranch, saveHeadOrganization } from '../reducers/organization-card/organization-card.action';
@@ -59,6 +59,10 @@ export class OrganizationCardComponent implements OnInit {
       this.store.dispatch(
         saveHeadOrganization({ payload: this.headForm.value })
       );
+      
+      this.store.dispatch(setActiveOrganization({
+        organizationData: this.headForm.value
+      }));
     }
   }
 
@@ -67,6 +71,10 @@ export class OrganizationCardComponent implements OnInit {
       this.store.dispatch(
         saveBranch({ payload: this.branchForm.value })
       );
+
+      this.store.dispatch(setActiveOrganization({
+        organizationData: this.branchForm.value
+      }));
     }
   }
 
