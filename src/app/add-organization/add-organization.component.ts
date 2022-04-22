@@ -6,6 +6,7 @@ import { HeadOrganization } from 'src/database/head-organization-bd';
 import { OrganizationType } from '../reducers/add-organization/add-organization-reducer';
 import { saveBranch, saveHeadOrganization, setOrganizationType } from '../reducers/add-organization/add-organization.actions';
 import { organizationTypeSelector } from '../reducers/add-organization/add-organization.selectors';
+import { setUserData } from '../reducers/authentication/authentication.actions';
 import { Role } from '../reducers/authentication/authentication.reducer';
 import { roleSelector } from '../reducers/authentication/authentication.selectors';
 import { headOrganizationsSelector } from '../reducers/head-organization/head-organization.selectors';
@@ -31,27 +32,7 @@ export class AddOrganizationComponent implements OnInit {
   branchForm: FormGroup | null = null;
 
   constructor(private router: Router,
-    private store: Store) {
-    this.headOrganizations$.subscribe(
-      (headOrganizationsSelector) => {
-        this.headOrganizations = headOrganizationsSelector
-      }
-    );
-
-    this.role$.subscribe((roleSelector) => {
-      this.role = roleSelector;
-
-      if (!this.role) {
-        this.router.navigate(['/not-authenticated']);
-      }
-    });
-
-    this.organizationType$.subscribe((typeSelector) => {
-      this.organizationType = typeSelector;
-
-      this.changeOrganizationType();
-    });
-  }
+    private store: Store) { }
 
   handleOrganizationTypeChange(type: OrganizationType): void {
     this.store.dispatch(setOrganizationType({ payload: { type } }))
@@ -85,6 +66,44 @@ export class AddOrganizationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.headOrganizations$.subscribe(
+      (headOrganizationsSelector) => {
+        this.headOrganizations = headOrganizationsSelector
+      }
+    );
+
+    this.role$.subscribe((roleSelector) => {
+      this.role = roleSelector;
+    });
+
+    this.organizationType$.subscribe((typeSelector) => {
+      this.organizationType = typeSelector;
+
+      this.changeOrganizationType();
+    });
+
+    if (!this.role) {
+      this.store.dispatch(setUserData());
+    }
+    this.headOrganizations$.subscribe(
+      (headOrganizationsSelector) => {
+        this.headOrganizations = headOrganizationsSelector
+      }
+    );
+
+    this.role$.subscribe((roleSelector) => {
+      this.role = roleSelector;
+    });
+
+    this.organizationType$.subscribe((typeSelector) => {
+      this.organizationType = typeSelector;
+
+      this.changeOrganizationType();
+    });
+
+    if (!this.role) {
+      this.store.dispatch(setUserData());
+    }
   }
 
   private changeOrganizationType() {

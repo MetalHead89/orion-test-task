@@ -10,9 +10,17 @@ export const signOut = createAction(
   '[Authentication] sign out'
 );
 
+export const logOut = createAction(
+  '[Authentication] log out'
+);
+
 export const authenticationFailed = createAction(
   '[Authentication] authenticationFailed',
   props<{ isAuthenticationFailed: boolean }>()
+);
+
+export const setUserData = createAction(
+  '[Authentication] Set user data'
 );
 
 export const saveUserData = createAction(

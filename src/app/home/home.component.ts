@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Branch } from 'src/database/branch-bd';
 import { HeadOrganization } from 'src/database/head-organization-bd';
+import { setUserData } from '../reducers/authentication/authentication.actions';
 import {
   AuthenticationState,
   Role,
@@ -43,7 +44,27 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private store: Store<AuthenticationState>
-  ) {
+  ) { }
+
+  handleDisplayTypeRadioChange(displayType: OrganizationDisplayType) {
+    this.organizationDisplayType = displayType;
+  }
+
+  handleItemClick(event: MouseEvent, organizationData: OrganizationData) {
+    this.store.dispatch(setActiveOrganization({ organizationData }))
+    this.store.dispatch(showOrganizationCard())
+    event.preventDefault();
+  }
+
+  handleHiddenOrganizationListClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+
+  handleAddOrganizationClick() {
+    this.router.navigate(['/add-organization']);
+  }
+
+  ngOnInit(): void {
     this.branches$.subscribe(
       (branchesSelector) => {
         this.branches = branchesSelector
@@ -70,32 +91,12 @@ export class HomeComponent implements OnInit {
 
     this.role$.subscribe((roleSelector) => {
       this.role = roleSelector;
-
-      if (!this.role) {
-        this.router.navigate(['/not-authenticated']);
-      }
     });
-  }
 
-  handleDisplayTypeRadioChange(displayType: OrganizationDisplayType) {
-    this.organizationDisplayType = displayType;
-  }
+    if (!this.role) {
+      this.store.dispatch(setUserData());
+    }
 
-  handleItemClick(event: MouseEvent, organizationData: OrganizationData) {
-    this.store.dispatch(setActiveOrganization({ organizationData }))
-    this.store.dispatch(showOrganizationCard())
-    event.preventDefault();
-  }
-
-  handleHiddenOrganizationListClick(event: MouseEvent) {
-    event.preventDefault();
-  }
-
-  handleAddOrganizationClick() {
-    this.router.navigate(['/add-organization']);
-  }
-
-  ngOnInit(): void {
     if (this.headOrganizations.length === 0) {
       this.store.dispatch(load());
     }
@@ -110,7 +111,7 @@ export class HomeComponent implements OnInit {
       { ...organization, branch: [] })
     )
     this.organizationsList = [...this.organizationsTree];
-    
+
     this.branches.forEach(branch => {
       this.organizationsTree.forEach(organization => {
         if (organization.id === branch.headOrganization) {
