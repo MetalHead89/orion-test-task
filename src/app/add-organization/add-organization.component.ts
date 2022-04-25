@@ -3,6 +3,7 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn,
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { HeadOrganization } from 'src/database/head-organization-bd';
+import { digitsCountIsValid, headOrganizationSelectIsValid } from 'src/lib/validators';
 import { OrganizationType } from '../reducers/add-organization/add-organization-reducer';
 import { saveBranch, saveHeadOrganization, setOrganizationType } from '../reducers/add-organization/add-organization.actions';
 import { organizationTypeSelector } from '../reducers/add-organization/add-organization.selectors';
@@ -152,8 +153,8 @@ export class AddOrganizationComponent implements OnInit {
         id: new FormControl(0),
         fullOrganizationName: new FormControl('', [Validators.required]),
         shortOrganizationName: new FormControl('', [Validators.required]),
-        tin: new FormControl('', [Validators.required, this.digitsCountIsValid(12)]),
-        kpp: new FormControl('', [Validators.required, this.digitsCountIsValid(9)]),
+        tin: new FormControl('', [Validators.required, digitsCountIsValid(12)]),
+        kpp: new FormControl('', [Validators.required, digitsCountIsValid(9)]),
         founder: new FormControl('', [Validators.required]),
         address: new FormControl('', [Validators.required]),
         telephone: new FormControl('', [Validators.required])
@@ -163,7 +164,7 @@ export class AddOrganizationComponent implements OnInit {
       this.branchForm = new FormGroup({
         id: new FormControl(0),
         headOrganization: new FormControl(0, [Validators.required,
-        this.headOrganizationSelectIsValid()]),
+        headOrganizationSelectIsValid()]),
         address: new FormControl('', [Validators.required]),
         telephone: new FormControl('', [Validators.required]),
         executive: new FormControl('', [Validators.required]),
@@ -176,19 +177,19 @@ export class AddOrganizationComponent implements OnInit {
     }
   }
 
-  private headOrganizationSelectIsValid(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const isValid = control.value !== 0;
+  // private headOrganizationSelectIsValid(): ValidatorFn {
+  //   return (control: AbstractControl): ValidationErrors | null => {
+  //     const isValid = control.value !== 0;
 
-      return isValid ? null : { prohibitedValue: { value: control.value } };
-    };
-  }
+  //     return isValid ? null : { prohibitedValue: { value: control.value } };
+  //   };
+  // }
 
-  private digitsCountIsValid(digit: number): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const isValid = new RegExp(`\\b\\d{${digit}}\\b`).test(control.value);
+  // private digitsCountIsValid(digit: number): ValidatorFn {
+  //   return (control: AbstractControl): ValidationErrors | null => {
+  //     const isValid = new RegExp(`\\b\\d{${digit}}\\b`).test(control.value);
 
-      return isValid ? null : { prohibitedValue: { value: control.value } };
-    };
-  }
+  //     return isValid ? null : { prohibitedValue: { value: control.value } };
+  //   };
+  // }
 }
