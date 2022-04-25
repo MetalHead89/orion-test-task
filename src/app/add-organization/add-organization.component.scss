@@ -57,13 +57,24 @@
     &:valid {
       border-color: $main-color;
     }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
   }
 
   &__back-section {
     padding: 10px 0;
   }
 
-  &__back, &__submit {
+  &__back,
+  &__submit {
     max-width: 120px;
     width: 100%;
     padding: 10px;
@@ -82,5 +93,15 @@
     &:active {
       background: $main-color;
     }
+
+    &:disabled {
+      background: transparent;
+      background: $main-color-light;
+      color: white;
+    }
+  }
+
+  &__error {
+    color: $error-color;
   }
 }

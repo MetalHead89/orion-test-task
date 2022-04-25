@@ -45,6 +45,13 @@
       class="add-organization__input"
       required
     />
+    <div
+      class="add-organization__error"
+      *ngIf="fullOrganizationName && fullOrganizationName.errors?.['required'] && (fullOrganizationName.touched)"
+    >
+      Поле не может быть пустым
+    </div>
+
     <input
       type="text"
       placeholder="Краткое название"
@@ -52,20 +59,41 @@
       class="add-organization__input"
       required
     />
+    <div
+      class="add-organization__error"
+      *ngIf="shortOrganizationName && shortOrganizationName.errors?.['required'] && (shortOrganizationName.touched)"
+    >
+      Поле не может быть пустым
+    </div>
+
     <input
-      type="text"
+      type="number"
       placeholder="ИНН"
       formControlName="tin"
       class="add-organization__input"
       required
     />
+    <div
+      class="add-organization__error"
+      *ngIf="tin && tin.errors?.['required'] && (tin.touched)"
+    >
+      Поле не может быть пустым
+    </div>
+
     <input
-      type="text"
+      type="number"
       placeholder="КПП"
       formControlName="kpp"
       class="add-organization__input"
       required
     />
+    <div
+      class="add-organization__error"
+      *ngIf="kpp && kpp.errors?.['required'] && (kpp.touched)"
+    >
+      Поле не может быть пустым
+    </div>
+
     <input
       type="text"
       placeholder="Учредитель"
@@ -73,6 +101,13 @@
       class="add-organization__input"
       required
     />
+    <div
+      class="add-organization__error"
+      *ngIf="founder && founder.errors?.['required'] && (founder.touched)"
+    >
+      Поле не может быть пустым
+    </div>
+
     <input
       type="text"
       placeholder="Адрес"
@@ -80,13 +115,27 @@
       class="add-organization__input"
       required
     />
+    <div
+      class="add-organization__error"
+      *ngIf="address && address.errors?.['required'] && (address.touched)"
+    >
+      Поле не может быть пустым
+    </div>
+
     <input
-      type="text"
+      type="number"
       placeholder="Телефон"
       formControlName="telephone"
       class="add-organization__input"
       required
     />
+    <div
+      class="add-organization__error"
+      *ngIf="telephone && telephone.errors?.['required'] && (telephone.touched)"
+    >
+      Поле не может быть пустым
+    </div>
+
     <button
       [disabled]="headForm.invalid"
       type="submit"
@@ -103,11 +152,12 @@
     (ngSubmit)="submitBranchForm()"
   >
     <select class="add-organization__select" formControlName="headOrganization">
-      <option disabled value=0>Головная организация</option>
+      <option disabled value="0">Головная организация</option>
       <option *ngFor="let head of headOrganizations" value="{{ head.id }}">
         {{ head.shortOrganizationName }}
       </option>
     </select>
+
     <input
       type="text"
       placeholder="Адрес"
@@ -115,13 +165,27 @@
       class="add-organization__input"
       required
     />
+    <div
+      class="add-organization__error"
+      *ngIf="branchAddress && branchAddress.errors?.['required'] && (branchAddress.touched)"
+    >
+      Поле не может быть пустым
+    </div>
+
     <input
-      type="tel"
+      type="number"
       placeholder="Телефон"
       formControlName="telephone"
       class="add-organization__input"
       required
     />
+    <div
+      class="add-organization__error"
+      *ngIf="branchTelephone && branchTelephone.errors?.['required'] && (branchTelephone.touched)"
+    >
+      Поле не может быть пустым
+    </div>
+
     <input
       type="text"
       placeholder="Должностное лицо"
@@ -129,6 +193,13 @@
       class="add-organization__input"
       required
     />
+    <div
+      class="add-organization__error"
+      *ngIf="branchExecutive && branchExecutive.errors?.['required'] && (branchExecutive.touched)"
+    >
+      Поле не может быть пустым
+    </div>
+
     <button
       [disabled]="branchForm.invalid"
       type="submit"

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { HeadOrganization } from 'src/database/head-organization-bd';
@@ -106,14 +106,54 @@ export class AddOrganizationComponent implements OnInit {
     }
   }
 
+  get fullOrganizationName() {
+    return this.headForm ? this.headForm.get('fullOrganizationName') : null
+  }
+
+  get shortOrganizationName() {
+    return this.headForm ? this.headForm.get('shortOrganizationName') : null
+  }
+
+  get tin() {
+    return this.headForm ? this.headForm.get('tin') : null
+  }
+
+  get kpp() {
+    return this.headForm ? this.headForm.get('kpp') : null
+  }
+
+  get founder() {
+    return this.headForm ? this.headForm.get('founder') : null
+  }
+
+  get address() {
+    return this.headForm ? this.headForm.get('address') : null
+  }
+
+  get telephone() {
+    return this.headForm ? this.headForm.get('telephone') : null
+  }
+
+  get branchAddress() {
+    return this.branchForm ? this.branchForm.get('address') : null
+  }
+
+  get branchTelephone() {
+    return this.branchForm ? this.branchForm.get('telephone') : null
+  }
+
+  get branchExecutive() {
+    return this.branchForm ? this.branchForm.get('executive') : null
+  }
+
   private changeOrganizationType() {
     if (this.organizationType === 'head') {
       this.headForm = new FormGroup({
         id: new FormControl(0),
         fullOrganizationName: new FormControl('', [Validators.required]),
         shortOrganizationName: new FormControl('', [Validators.required]),
-        tin: new FormControl('', [Validators.required]),
-        kpp: new FormControl('', [Validators.required]),
+        tin: new FormControl('', [Validators.required, Validators.pattern(/\b\d{12}\b/)]),
+        kpp: new FormControl('', [Validators.required, Validators.pattern(/\b\d{9}\b/)]),
         founder: new FormControl('', [Validators.required]),
         address: new FormControl('', [Validators.required]),
         telephone: new FormControl('', [Validators.required])
@@ -122,7 +162,8 @@ export class AddOrganizationComponent implements OnInit {
     } else if (this.organizationType === 'branch') {
       this.branchForm = new FormGroup({
         id: new FormControl(0),
-        headOrganization: new FormControl(0, [Validators.required]),
+        headOrganization: new FormControl(0, [Validators.required,
+        this.headOrganizationSelectIsValid()]),
         address: new FormControl('', [Validators.required]),
         telephone: new FormControl('', [Validators.required]),
         executive: new FormControl('', [Validators.required]),
@@ -133,5 +174,13 @@ export class AddOrganizationComponent implements OnInit {
       this.headForm = null;
       this.branchForm = null;
     }
+  }
+
+  private headOrganizationSelectIsValid(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const isValid = control.value !== 0;
+
+      return isValid ? null : { prohibitedValue: { value: control.value } };
+    };
   }
 }
