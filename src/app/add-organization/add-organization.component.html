@@ -75,9 +75,9 @@
     />
     <div
       class="add-organization__error"
-      *ngIf="tin && tin.errors?.['required'] && (tin.touched)"
+      *ngIf="tin && tin.errors && (tin.touched)"
     >
-      Поле не может быть пустым
+      ИНН должен состоять из 12 цифр
     </div>
 
     <input
@@ -89,9 +89,9 @@
     />
     <div
       class="add-organization__error"
-      *ngIf="kpp && kpp.errors?.['required'] && (kpp.touched)"
+      *ngIf="kpp && kpp.errors && (kpp.touched)"
     >
-      Поле не может быть пустым
+      КПП должен состоять из 9 цифр
     </div>
 
     <input

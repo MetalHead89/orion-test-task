@@ -152,8 +152,8 @@ export class AddOrganizationComponent implements OnInit {
         id: new FormControl(0),
         fullOrganizationName: new FormControl('', [Validators.required]),
         shortOrganizationName: new FormControl('', [Validators.required]),
-        tin: new FormControl('', [Validators.required, Validators.pattern(/\b\d{12}\b/)]),
-        kpp: new FormControl('', [Validators.required, Validators.pattern(/\b\d{9}\b/)]),
+        tin: new FormControl('', [Validators.required, this.digitsCountIsValid(12)]),
+        kpp: new FormControl('', [Validators.required, this.digitsCountIsValid(9)]),
         founder: new FormControl('', [Validators.required]),
         address: new FormControl('', [Validators.required]),
         telephone: new FormControl('', [Validators.required])
@@ -179,6 +179,14 @@ export class AddOrganizationComponent implements OnInit {
   private headOrganizationSelectIsValid(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const isValid = control.value !== 0;
+
+      return isValid ? null : { prohibitedValue: { value: control.value } };
+    };
+  }
+
+  private digitsCountIsValid(digit: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const isValid = new RegExp(`\\b\\d{${digit}}\\b`).test(control.value);
 
       return isValid ? null : { prohibitedValue: { value: control.value } };
     };
