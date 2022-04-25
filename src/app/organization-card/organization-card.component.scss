@@ -43,7 +43,8 @@
     }
   }
 
-  &__edit, &__submit {
+  &__edit,
+  &__submit {
     max-width: 200px;
     width: 100%;
     padding: 10px;
@@ -61,6 +62,12 @@
 
     &:active {
       background: $main-color;
+    }
+
+    &:disabled {
+      background: transparent;
+      background: $main-color-light;
+      color: white;
     }
   }
 
@@ -98,8 +105,24 @@
       outline: none;
     }
 
-    &:hover, &:focus, &:valid {
+    &:hover,
+    &:focus,
+    &:valid {
       border-color: $main-color;
     }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  &__error {
+    color: $error-color;
   }
 }

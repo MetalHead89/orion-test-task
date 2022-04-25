@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { HeadOrganization } from 'src/database/head-organization-bd';
@@ -176,20 +176,4 @@ export class AddOrganizationComponent implements OnInit {
       this.branchForm = null;
     }
   }
-
-  // private headOrganizationSelectIsValid(): ValidatorFn {
-  //   return (control: AbstractControl): ValidationErrors | null => {
-  //     const isValid = control.value !== 0;
-
-  //     return isValid ? null : { prohibitedValue: { value: control.value } };
-  //   };
-  // }
-
-  // private digitsCountIsValid(digit: number): ValidatorFn {
-  //   return (control: AbstractControl): ValidationErrors | null => {
-  //     const isValid = new RegExp(`\\b\\d{${digit}}\\b`).test(control.value);
-
-  //     return isValid ? null : { prohibitedValue: { value: control.value } };
-  //   };
-  // }
 }

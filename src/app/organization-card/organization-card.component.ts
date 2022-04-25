@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Branch } from 'src/database/branch-bd';
 import { HeadOrganization } from 'src/database/head-organization-bd';
+import { digitsCountIsValid } from 'src/lib/validators';
 import { Role } from '../reducers/authentication/authentication.reducer';
 import { roleSelector } from '../reducers/authentication/authentication.selectors';
 import { closeOrganizationCard, setActiveOrganization } from '../reducers/home/home.action';
@@ -66,6 +67,46 @@ export class OrganizationCardComponent implements OnInit {
     }
   }
 
+  get fullOrganizationName() {
+    return this.headForm ? this.headForm.get('fullOrganizationName') : null
+  }
+
+  get shortOrganizationName() {
+    return this.headForm ? this.headForm.get('shortOrganizationName') : null
+  }
+
+  get tin() {
+    return this.headForm ? this.headForm.get('tin') : null
+  }
+
+  get kpp() {
+    return this.headForm ? this.headForm.get('kpp') : null
+  }
+
+  get founder() {
+    return this.headForm ? this.headForm.get('founder') : null
+  }
+
+  get address() {
+    return this.headForm ? this.headForm.get('address') : null
+  }
+
+  get telephone() {
+    return this.headForm ? this.headForm.get('telephone') : null
+  }
+
+  get branchAddress() {
+    return this.branchForm ? this.branchForm.get('address') : null
+  }
+
+  get branchTelephone() {
+    return this.branchForm ? this.branchForm.get('telephone') : null
+  }
+
+  get branchExecutive() {
+    return this.branchForm ? this.branchForm.get('executive') : null
+  }
+
   submitBranchForm() {
     if (this.branchForm !== null) {
       this.store.dispatch(
@@ -90,8 +131,8 @@ export class OrganizationCardComponent implements OnInit {
         id: new FormControl(organization.id),
         fullOrganizationName: new FormControl(organization.fullOrganizationName, [Validators.required]),
         shortOrganizationName: new FormControl(organization.shortOrganizationName, [Validators.required]),
-        tin: new FormControl(organization.tin, [Validators.required]),
-        kpp: new FormControl(organization.kpp, [Validators.required]),
+        tin: new FormControl(organization.tin, [Validators.required, digitsCountIsValid(12)]),
+        kpp: new FormControl(organization.kpp, [Validators.required, digitsCountIsValid(9)]),
         founder: new FormControl(organization.founder, [Validators.required]),
         address: new FormControl(organization.address, [Validators.required]),
         telephone: new FormControl(organization.telephone, [Validators.required])

@@ -18,7 +18,7 @@ const headOrganizationBD: HeadOrganization[] = [
     kpp: '489751687',
     founder: 'Рогов Андрей Юсупович',
     address: 'г. Казань, ул. Ленина, д. 7',
-    telephone: '89998887766 ',
+    telephone: '89998887766',
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const headOrganizationBD: HeadOrganization[] = [
     kpp: '698425687',
     founder: 'Кирилов Кирил Васильевич',
     address: 'г. Москва, ул. Высотная, д. 15',
-    telephone: '89541294865 ',
+    telephone: '89541294865',
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ const headOrganizationBD: HeadOrganization[] = [
     kpp: '354975468',
     founder: 'Петров Святослав Валерьевич',
     address: 'г. Архангельск, ул. 40 лет октября, д. 61',
-    telephone: '83136849513 ',
+    telephone: '83136849513',
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ const headOrganizationBD: HeadOrganization[] = [
     kpp: '486751432',
     founder: 'Ершов Евгений Витальевич',
     address: 'г. Сызрань, ул. Москвина, д. 11',
-    telephone: '84321597549 ',
+    telephone: '84321597549',
   },
 ];
 

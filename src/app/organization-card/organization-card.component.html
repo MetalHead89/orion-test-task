@@ -67,13 +67,27 @@
         class="organization-card__input"
         required
       />
+      <div
+        class="organization-card__error"
+        *ngIf="branchAddress && branchAddress.errors?.['required'] && (branchAddress.touched)"
+      >
+        Поле не может быть пустым
+      </div>
+
       <input
-        type="tel"
+        type="number"
         placeholder="Телефон"
         formControlName="telephone"
         class="organization-card__input"
         required
       />
+      <div
+        class="organization-card__error"
+        *ngIf="branchTelephone && branchTelephone.errors?.['required'] && (branchTelephone.touched)"
+      >
+        Поле не может быть пустым
+      </div>
+
       <input
         type="text"
         placeholder="Должностное лицо"
@@ -81,6 +95,13 @@
         class="organization-card__input"
         required
       />
+      <div
+        class="organization-card__error"
+        *ngIf="branchExecutive && branchExecutive.errors?.['required'] && (branchExecutive.touched)"
+      >
+        Поле не может быть пустым
+      </div>
+
       <button
         [disabled]="branchForm.invalid"
         type="submit"
@@ -103,6 +124,13 @@
         class="organization-card__input"
         required
       />
+      <div
+        class="organization-card__error"
+        *ngIf="fullOrganizationName && fullOrganizationName.errors?.['required'] && (fullOrganizationName.touched)"
+      >
+        Поле не может быть пустым
+      </div>
+
       <input
         type="text"
         placeholder="Краткое название"
@@ -110,20 +138,41 @@
         class="organization-card__input"
         required
       />
+      <div
+        class="organization-card__error"
+        *ngIf="shortOrganizationName && shortOrganizationName.errors?.['required'] && (shortOrganizationName.touched)"
+      >
+        Поле не может быть пустым
+      </div>
+
       <input
-        type="text"
+        type="number"
         placeholder="ИНН"
         formControlName="tin"
         class="organization-card__input"
         required
       />
+      <div
+        class="organization-card__error"
+        *ngIf="tin && tin.errors && tin.touched"
+      >
+        ИНН должен состоять из 12 цифр
+      </div>
+
       <input
-        type="text"
+        type="number"
         placeholder="КПП"
         formControlName="kpp"
         class="organization-card__input"
         required
       />
+      <div
+        class="organization-card__error"
+        *ngIf="kpp && kpp.errors && kpp.touched"
+      >
+        КПП должен состоять из 9 цифр
+      </div>
+
       <input
         type="text"
         placeholder="Учредитель"
@@ -131,6 +180,13 @@
         class="organization-card__input"
         required
       />
+      <div
+        class="organization-card__error"
+        *ngIf="founder && founder.errors?.['required'] && (founder.touched)"
+      >
+        Поле не может быть пустым
+      </div>
+
       <input
         type="text"
         placeholder="Адрес"
@@ -138,13 +194,27 @@
         class="organization-card__input"
         required
       />
+      <div
+        class="organization-card__error"
+        *ngIf="address && address.errors?.['required'] && (address.touched)"
+      >
+        Поле не может быть пустым
+      </div>
+
       <input
-        type="text"
+        type="number"
         placeholder="Телефон"
         formControlName="telephone"
         class="organization-card__input"
         required
       />
+      <div
+        class="organization-card__error"
+        *ngIf="telephone && telephone.errors?.['required'] && (telephone.touched)"
+      >
+        Поле не может быть пустым
+      </div>
+
       <button
         [disabled]="headForm.invalid"
         type="submit"
